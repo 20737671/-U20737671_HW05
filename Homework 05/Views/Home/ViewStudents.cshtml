@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Homework_05.Models.Students>
+
+@{
+    ViewBag.Title = "ViewStudents";
+}
+
+<h2>ViewStudents</h2>
+
+<p>
+    <div class="row">
+        <input class="col-sm-1 form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+
+
+        
+
+        <select class="col-sm-1 form-control">
+            <option>Select an Author</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+
+        <button class="col-sm-1 btn btn-success my-2 my-sm-0" type="submit">Search</button>
+
+        <button class="col-sm-1 btn btn-danger my-2 my-sm-0" type="submit">Search</button>
+    </div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Students => Students.StudentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Students => Students.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Students => Students.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Students => Students.Birthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Students => Students.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Students => Students.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Students => Students.Point)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Point)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

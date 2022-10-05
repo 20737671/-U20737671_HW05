@@ -1,0 +1,70 @@
+﻿
+
+@model IEnumerable<Homework_05.Models.BorrowsVM>
+
+@{
+    ViewBag.Title = "ViewDetails";
+}
+
+
+<script type="text/javascript">
+var count ='@Model.Count()';
+</script>
+
+<h2>@ViewBag.Message</h2>
+
+<h3># Borrows - @Model.Count()</h3>
+
+
+
+
+
+
+
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(BorrowsVM => BorrowsVM.borrow.BorrowID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BorrowsVM => BorrowsVM.borrow.TakenDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BorrowsVM => BorrowsVM.borrow.BroughtDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BorrowsVM => BorrowsVM.student.Name)
+        </th>
+        <th>
+
+
+            <button class="col-sm-8 btn btn-info my-2 my-sm-0" type="submit"> @Html.ActionLink("View Students", "ShowStudents", null, new { style = "color: white" })</button>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.borrow.BorrowID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.borrow.TakenDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.borrow.BroughtDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.student.Name) @Html.DisplayFor(modelItem => item.student.Surname)
+    </td>
+
+
+
+
+</tr>
+    }
+
+</table>

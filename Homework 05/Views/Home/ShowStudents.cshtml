@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Homework_05.Models.Students>
+
+@{
+    ViewBag.Title = "ShowStudents";
+}
+
+<h2>Students</h2>
+
+
+
+    <form asp-action="ViewBooks2" method="get">
+
+        <div class="row">
+
+            <input class="col-sm-1 form-control mr-sm-2" type="text" placeholder="Search" name="TextString" value="@ViewData["NewFilter"]" aria-label="Search">
+
+            <select class="col-sm-1 form-control" name="ClassSelect">
+                <option value="@ViewData["ClassFilter"]">Select a Class</option>
+                @foreach (var item in Model.Select(l => new { l.Class }))
+                {
+
+                    <option value="@Html.DisplayFor(l => item.Class)" aria-label="Search">@Html.DisplayFor(l => item.Class)</option>
+
+                }
+
+            </select>
+
+            <button class="col-sm-1 btn btn-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+
+            <button class="col-sm-1 btn btn-danger my-2 my-sm-0" type="submit"> @Html.ActionLink("Clear", "ShowStudents", null, new { style = "color: white" })</button>
+        </div>
+
+    </form>
+
+
+<table class="table">
+    <tr>
+        <th>
+            
+            @Html.DisplayNameFor(model => model.StudentID)
+        </th>
+        <th>
+            <b>Name</b> 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Point)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Point)
+        </td>
+        <td>
+            
+
+            <button class="col-sm-8 btn btn-info my-2 my-sm-0" type="submit">@Html.ActionLink("Borrow Book", "ViewDetails" )</button>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Homework_05.Models.BooksVM>
+
+@{
+    ViewBag.Title = "ViewBooks2";
+}
+
+<h2>Books</h2>
+
+
+    <form asp-action="ViewBooks2" method="get">
+
+    <div class="row">
+        <input class="col-sm-1 form-control mr-sm-2" type="text" placeholder="Search" name="SearchString" value= "@ViewData["CurrentFilter"]" aria-label="Search">
+
+
+        <select class="col-sm-1 form-control" name="TypeSelect">
+            <option value="@ViewData["TypeFilter"]">Select a Type</option>
+            @foreach (var item in Model.Select(t => new { t.type.Name }))
+            {
+                <option value="@Html.DisplayFor(t => item.Name)" aria-label="Search">@Html.DisplayFor(t => item.Name)</option>                
+            }
+
+        </select>
+
+        <select class="col-sm-1 form-control" name="AuthSelect">
+            <option value="@ViewData["AuthFilter"]">Select an Author</option>
+            @foreach (var item in Model.Select(l => new { l.author.Surname }))
+            {
+
+                <option value="@Html.DisplayFor(l => item.Surname)" aria-label="Search">@Html.DisplayFor(l => item.Surname)</option>
+            }
+
+
+
+        </select>
+
+        <button class="col-sm-1 btn btn-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+
+        <button class="col-sm-1 btn btn-danger my-2 my-sm-0" type="submit">@Html.ActionLink("Clear", "ViewBooks2", "Home", null, new { style = "color: white" })</button>
+    </div>
+
+
+
+    </form>
+
+
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(BookVM => BookVM.book.BookID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BookVM => BookVM.book.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BookVM => BookVM.author.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BookVM => BookVM.type.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BookVM => BookVM.book.Pagecount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(BookVM => BookVM.book.Point)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.BookID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.author.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.Pagecount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.Point)
+            </td>
+            <td>
+
+                
+
+                <button class="col-sm-8 btn btn-info my-2 my-sm-0" type="submit">@Html.ActionLink("View", "ViewDetails",  new { borID = item.book.BookID, bookName = item.book.Name, style = "color: white" })</button>
+
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
